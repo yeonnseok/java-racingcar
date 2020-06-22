@@ -4,8 +4,10 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EmptySource;
-import org.junit.jupiter.params.provider.NullAndEmptySource;
 import org.junit.jupiter.params.provider.ValueSource;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -71,5 +73,14 @@ class CarTest {
             Car car = Car.of("ysdog", -1);
         }).isInstanceOf(NegativePositionException.class)
                 .hasMessage("포지션은 음수가 될 수 없습니다.");
+    }
+
+    @DisplayName("equals & hashCode")
+    @Test
+    public void equalsAndHashCode() {
+        Car car1 = new Car("ysdog");
+        Car car2 = new Car("ysdog");
+
+        assertThat(car1.hashCode()).isEqualTo(car2.hashCode());
     }
 }
